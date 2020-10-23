@@ -12,11 +12,13 @@ if (isset($_POST['submit'])) {
         die("Connection failed: " . $cnn->connect_error);
     }
 
-    $sql = "UPDATE settings SET title=" . "'" . $title . "'" . " WHERE id=1";
+    $sql = "UPDATE settings SET title=" . "'" . $title . "', " . "description=" . "'" . $description . "', " . "keyword=" . "'" . $keyword . "'" . " WHERE id=1";
     //echo $sql;
     if ($cnn->query($sql) === TRUE) {
-        echo "Record updated successfully";
+        header("Location:../settings.php?update=successful");
+        //echo "Record updated successfully";
     } else {
+        header("Location:../settings.php?update=not-successful");
         echo "Error updating record: " . $cnn->error;
     }
 
