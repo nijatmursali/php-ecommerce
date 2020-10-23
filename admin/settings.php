@@ -3,13 +3,6 @@ require_once 'connection/connection.php';
 require_once 'header.php';
 require_once 'sidebar.php';
 
-$sql = "SELECT * FROM settings where id=1";
-$result = $cnn->query($sql);
-
-$row = mysqli_fetch_array($result);
-
-//$row = $result->fetch_assoc();
-
 ?>
 
 <div class="content-wrapper">
@@ -46,6 +39,14 @@ $row = mysqli_fetch_array($result);
                 <div class="form-group">
                     <label for="keyword">Keyword</label>
                     <input value="<?php echo $row['keyword'] ?>" name="keyword" type="text" class="form-control" id="keyword" placeholder="Enter keyword">
+                </div>
+                <div class="form-group">
+                    <label for="logo">Logo</label>
+                    <input value="<?php echo $row['logo'] ?>" name="logo" type="text" class="form-control" id="logo" placeholder="Enter logo">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <input value="<?php echo $row['message'] ?>" name="message" type="text" class="form-control" id="message" placeholder="Enter message">
                 </div>
             </div>
             <!-- /.card-body -->

@@ -309,3 +309,21 @@
             <!-- Mobile Menu Area End Here -->
         </header>
         <!-- Header Area End Here -->
+
+
+
+        <?php
+
+
+        try {
+            $cnn = mysqli_connect('localhost', 'root', '', 'e-commerce');
+        } catch (\Throwable $e) {
+            echo $e->getMessage();
+        }
+        $sql = "SELECT * FROM settings where id=1";
+        $result = $cnn->query($sql);
+
+        $row = mysqli_fetch_array($result);
+
+
+        ?>

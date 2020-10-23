@@ -83,7 +83,7 @@
                           <li class="nav-item">
                               <a href="settings.php" class="nav-link">
                                   <i class="fab fa-firefox nav-icon"></i>
-                                  <p>Site</p>
+                                  <p>Website</p>
                               </a>
                           </li>
                           <li class="nav-item">
@@ -93,7 +93,7 @@
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="#" class="nav-link">
+                              <a href="user-settings.php" class="nav-link">
                                   <i class="far fa-user nav-icon"></i>
                                   <p>User</p>
                               </a>

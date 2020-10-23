@@ -154,3 +154,15 @@
       </ul>
     </nav>
     <!-- /.navbar -->
+
+
+    <?php
+
+
+    $sql = "SELECT * FROM settings where id=1";
+    $result = $cnn->query($sql);
+
+    $row = mysqli_fetch_array($result);
+
+
+    ?>
