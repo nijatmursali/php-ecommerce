@@ -158,6 +158,7 @@
 
     <?php
 
+    require_once "connection/connection.php";
 
     $sql = "SELECT * FROM settings where id=1";
     $result = $cnn->query($sql);

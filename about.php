@@ -15,7 +15,7 @@ $row = mysqli_fetch_assoc($result);
             <!-- About Text Start -->
             <div class="col-lg-6 order-last order-lg-first">
                 <div class="about-text-wrap">
-                    <h2><span><?php echo $row['title'] ?></span></span><?php echo $row['title_big'] ?></span></h2>
+                    <h2><span><?php echo $row['title'] ?></span></span><?php echo $row['bigtitle'] ?></span></h2>
                     <p><?php echo $row['description'] ?></span></p>
                 </div>
             </div>
