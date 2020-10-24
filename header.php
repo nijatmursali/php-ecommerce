@@ -286,7 +286,7 @@
                                     <ul>
                                         <li><a href="index.php">Home</a></li>
                                         <li><a href="shop.php">Shop</a></li>
-                                        <li><a href="about-us.html">About Us</a></li>
+                                        <li><a href="about.php">About Us</a></li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </nav>
@@ -324,6 +324,5 @@
         $result = $cnn->query($sql);
 
         $row = mysqli_fetch_array($result);
-
 
         ?>
