@@ -1,328 +1,322 @@
+<?php
+error_reporting(0);
+session_start();
+ob_start();
+require_once 'Admin/islem/baglanti.php';
+require_once 'function.php';
+$ayar=$baglanti->prepare("SELECT * FROM  ayarlar where id=?");
+$ayar->execute(array(1));
+$ayarcek=$ayar->fetch(PDO::FETCH_ASSOC);
+
+ 
+$hakkimizda=$baglanti->prepare("SELECT * FROM  hakkimizda where hakkimizda_id=?");
+$hakkimizda->execute(array(1));
+$hakkimizdacek=$hakkimizda->fetch(PDO::FETCH_ASSOC);
+
+
+ $kullanicisor=$baglanti->prepare("SELECT * from kullanici where kullanici_adi=:kullanici_adi  ");
+ $kullanicisor->execute(array(
+'kullanici_adi'=>$_SESSION['normalgiris']
+ ));
+$kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
+$var=$kullanicisor->rowCount();
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ ?>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
-
-<!-- index28:48-->
-
+    
+<!-- index28:48--> 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Home Version One || limupa - Digital Products Store eCommerce Bootstrap 4 Template</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
-    <!-- Material Design Iconic Font-V2.2.0 -->
-    <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <!-- Font Awesome Stars-->
-    <link rel="stylesheet" href="css/fontawesome-stars.css">
-    <!-- Meanmenu CSS -->
-    <link rel="stylesheet" href="css/meanmenu.css">
-    <!-- owl carousel CSS -->
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <!-- Slick Carousel CSS -->
-    <link rel="stylesheet" href="css/slick.css">
-    <!-- Animate CSS -->
-    <link rel="stylesheet" href="css/animate.css">
-    <!-- Jquery-ui CSS -->
-    <link rel="stylesheet" href="css/jquery-ui.min.css">
-    <!-- Venobox CSS -->
-    <link rel="stylesheet" href="css/venobox.css">
-    <!-- Nice Select CSS -->
-    <link rel="stylesheet" href="css/nice-select.css">
-    <!-- Magnific Popup CSS -->
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <!-- Bootstrap V4.1.3 Fremwork CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Helper CSS -->
-    <link rel="stylesheet" href="css/helper.css">
-    <!-- Main Style CSS -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
-    <!-- Modernizr js -->
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-</head>
-
-<body>
-    <!--[if lt IE 8]>
-		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
-    <!-- Begin Body Wrapper -->
-    <div class="body-wrapper">
-        <!-- Begin Header Area -->
-        <header>
-            <!-- Begin Header Top Area -->
-            <div class="header-top">
-                <div class="container">
-                    <div class="row">
-                        <!-- Begin Header Top Left Area -->
-                        <div class="col-lg-3 col-md-4">
-                            <div class="header-top-left">
-                                <ul class="phone-wrap">
-                                    <li><span>Telephone Enquiry:</span><a href="#">(+123) 123 321 345</a></li>
-                                </ul>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+        <!-- Material Design Iconic Font-V2.2.0 -->
+        <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <!-- Font Awesome Stars-->
+        <link rel="stylesheet" href="css/fontawesome-stars.css">
+        <!-- Meanmenu CSS -->
+        <link rel="stylesheet" href="css/meanmenu.css">
+        <!-- owl carousel CSS -->
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+        <!-- Slick Carousel CSS -->
+        <link rel="stylesheet" href="css/slick.css">
+        <!-- Animate CSS -->
+        <link rel="stylesheet" href="css/animate.css">
+        <!-- Jquery-ui CSS -->
+        <link rel="stylesheet" href="css/jquery-ui.min.css">
+        <!-- Venobox CSS -->
+        <link rel="stylesheet" href="css/venobox.css">
+        <!-- Nice Select CSS -->
+        <link rel="stylesheet" href="css/nice-select.css">
+        <!-- Magnific Popup CSS -->
+        <link rel="stylesheet" href="css/magnific-popup.css">
+        <!-- Bootstrap V4.1.3 Fremwork CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Helper CSS -->
+        <link rel="stylesheet" href="css/helper.css">
+        <!-- Main Style CSS -->
+        <link rel="stylesheet" href="style.css">
+        <!-- Responsive CSS -->
+        <link rel="stylesheet" href="css/responsive.css">
+        <!-- Modernizr js -->
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+  
+        <div class="body-wrapper">
+            <!-- Begin Header Area -->
+            <header>
+                 <div style="background-color:black" class="header-top">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Begin Header Top Left Area -->
+                            <div class="col-lg-3 col-md-4">
+                                <div class="header-top-left">
+                                    <ul class="phone-wrap">
+                                        <li><span style="color:white">Telefon:</span><a style="color:white" href="#"><?php echo $ayarcek['telefon'] ?></a></li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Header Top Left Area End Here -->
-                        <!-- Begin Header Top Right Area -->
-                        <div class="col-lg-9 col-md-8">
-                            <div class="header-top-right">
-                                <ul class="ht-menu">
-                                    <!-- Begin Setting Area -->
-                                    <li>
-                                        <div class="ht-setting-trigger"><span>Setting</span></div>
-                                        <div class="setting ht-setting">
-                                            <ul class="ht-setting-list">
-                                                <li><a href="login-register.html">My Account</a></li>
-                                                <li><a href="checkout.html">Checkout</a></li>
-                                                <li><a href="login-register.html">Sign In</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <!-- Setting Area End Here -->
-                                    <!-- Begin Currency Area -->
-                                    <li>
-                                        <span class="currency-selector-wrapper">Currency :</span>
-                                        <div class="ht-currency-trigger"><span>USD $</span></div>
-                                        <div class="currency ht-currency">
-                                            <ul class="ht-setting-list">
-                                                <li><a href="#">EUR €</a></li>
-                                                <li class="active"><a href="#">USD $</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <!-- Currency Area End Here -->
-                                    <!-- Begin Language Area -->
-                                    <li>
-                                        <span class="language-selector-wrapper">Language :</span>
-                                        <div class="ht-language-trigger"><span>English</span></div>
-                                        <div class="language ht-language">
-                                            <ul class="ht-setting-list">
-                                                <li class="active"><a href="#"><img src="images/menu/flag-icon/1.jpg" alt="">English</a></li>
-                                                <li><a href="#"><img src="images/menu/flag-icon/2.jpg" alt="">Français</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <!-- Language Area End Here -->
-                                </ul>
+                            <!-- Header Top Left Area End Here -->
+                            <!-- Begin Header Top Right Area -->
+                            <div class="col-lg-9 col-md-8">
+                                <div class="header-top-right">
+                                    <ul class="ht-menu">
+                                        <!-- Begin Setting Area -->
+                                        <li>
+                                            <div class="ht-setting-trigger"><span style="color:white">Hesabım</span></div>
+                                            <div class="setting ht-setting">
+                                                <ul class="ht-setting-list">
+                                                    <li><a href="kullanici">Hesabım</a></li>
+                                                    <li><a href="sepet">Sepetim</a></li>
+                                                    <li><a href="siparisler">Almış olduğum ürünler</a></li>
+                                                    <li><a href="sifremidegistir">Şifremi değiştir</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                     
+                                    </ul>
+                                </div>
                             </div>
+                            <!-- Header Top Right Area End Here -->
                         </div>
-                        <!-- Header Top Right Area End Here -->
                     </div>
                 </div>
-            </div>
-            <!-- Header Top Area End Here -->
-            <!-- Begin Header Middle Area -->
-            <div class="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0">
-                <div class="container">
-                    <div class="row">
-                        <!-- Begin Header Logo Area -->
-                        <div class="col-lg-3">
-                            <div class="logo pb-sm-30 pb-xs-30">
-                                <a href="index.html">
-                                    <img src="images/menu/logo/1.jpg" alt="">
-                                </a>
+                <div class="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Begin Header Logo Area -->
+                            <div class="col-lg-3">
+                                <div class="logo pb-sm-30 pb-xs-30">
+                                    <a href="index.html">
+                                        <img src="logo.png" alt="">
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Header Logo Area End Here -->
-                        <!-- Begin Header Middle Right Area -->
-                        <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
-                            <!-- Begin Header Middle Searchbox Area -->
-                            <form action="#" class="hm-searchbox">
-                                <select class="nice-select select-search-category">
-                                    <option value="0">All</option>
-                                    <option value="10">Laptops</option>
-                                    <option value="17">- - Prime Video</option>
-                                    <option value="20">- - - - All Videos</option>
-                                    <option value="21">- - - - Blouses</option>
-                                    <option value="22">- - - - Evening Dresses</option>
-                                    <option value="23">- - - - Summer Dresses</option>
-                                    <option value="24">- - - - T-shirts</option>
-                                    <option value="25">- - - - Rent or Buy</option>
-                                    <option value="26">- - - - Your Watchlist</option>
-                                    <option value="27">- - - - Watch Anywhere</option>
-                                    <option value="28">- - - - Getting Started</option>
-                                    <option value="18">- - - - Computers</option>
-                                    <option value="29">- - - - More to Explore</option>
-                                    <option value="30">- - - - TV &amp; Video</option>
-                                    <option value="31">- - - - Audio &amp; Theater</option>
-                                    <option value="32">- - - - Camera, Photo </option>
-                                    <option value="33">- - - - Cell Phones</option>
-                                    <option value="34">- - - - Headphones</option>
-                                    <option value="35">- - - - Video Games</option>
-                                    <option value="36">- - - - Wireless Speakers</option>
-                                    <option value="19">- - - - Electronics</option>
-                                    <option value="37">- - - - Amazon Home</option>
-                                    <option value="38">- - - - Kitchen &amp; Dining</option>
-                                    <option value="39">- - - - Furniture</option>
-                                    <option value="40">- - - - Bed &amp; Bath</option>
-                                    <option value="41">- - - - Appliances</option>
-                                    <option value="11">TV &amp; Audio</option>
-                                    <option value="42">- - Chamcham</option>
-                                    <option value="45">- - - - Office</option>
-                                    <option value="47">- - - - Gaming</option>
-                                    <option value="48">- - - - Chromebook</option>
-                                    <option value="49">- - - - Refurbished</option>
-                                    <option value="50">- - - - Touchscreen</option>
-                                    <option value="51">- - - - Ultrabooks</option>
-                                    <option value="52">- - - - Blouses</option>
-                                    <option value="43">- - Sanai</option>
-                                    <option value="53">- - - - Hard Drives</option>
-                                    <option value="54">- - - - Graphic Cards</option>
-                                    <option value="55">- - - - Processors (CPU)</option>
-                                    <option value="56">- - - - Memory</option>
-                                    <option value="57">- - - - Motherboards</option>
-                                    <option value="58">- - - - Fans &amp; Cooling</option>
-                                    <option value="59">- - - - CD/DVD Drives</option>
-                                    <option value="44">- - Meito</option>
-                                    <option value="60">- - - - Sound Cards</option>
-                                    <option value="61">- - - - Cases &amp; Towers</option>
-                                    <option value="62">- - - - Casual Dresses</option>
-                                    <option value="63">- - - - Evening Dresses</option>
-                                    <option value="64">- - - - T-shirts</option>
-                                    <option value="65">- - - - Tops</option>
-                                    <option value="12">Smartphone</option>
-                                    <option value="66">- - Camera Accessories</option>
-                                    <option value="68">- - - - Octa Core</option>
-                                    <option value="69">- - - - Quad Core</option>
-                                    <option value="70">- - - - Dual Core</option>
-                                    <option value="71">- - - - 7.0 Screen</option>
-                                    <option value="72">- - - - 9.0 Screen</option>
-                                    <option value="73">- - - - Bags &amp; Cases</option>
-                                    <option value="67">- - XailStation</option>
-                                    <option value="74">- - - - Batteries</option>
-                                    <option value="75">- - - - Microphones</option>
-                                    <option value="76">- - - - Stabilizers</option>
-                                    <option value="77">- - - - Video Tapes</option>
-                                    <option value="78">- - - - Memory Card Readers</option>
-                                    <option value="79">- - - - Tripods</option>
-                                    <option value="13">Cameras</option>
-                                    <option value="14">headphone</option>
-                                    <option value="15">Smartwatch</option>
-                                    <option value="16">Accessories</option>
-                                </select>
-                                <input type="text" placeholder="Enter your search key ...">
-                                <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                            <!-- Header Middle Searchbox Area End Here -->
+                            <!-- Header Logo Area End Here -->
                             <!-- Begin Header Middle Right Area -->
-                            <div class="header-middle-right">
-                                <ul class="hm-menu">
-                                    <!-- Begin Header Middle Wishlist Area -->
-                                    <li class="hm-wishlist">
-                                        <a href="wishlist.html">
-                                            <span class="cart-item-count wishlist-item-count">0</span>
-                                            <i class="fa fa-heart-o"></i>
-                                        </a>
-                                    </li>
-                                    <!-- Header Middle Wishlist Area End Here -->
-                                    <!-- Begin Header Mini Cart Area -->
-                                    <li class="hm-minicart">
-                                        <div class="hm-minicart-trigger">
-                                            <span class="item-icon"></span>
-                                            <span class="item-text">£80.00
-                                                <span class="cart-item-count">2</span>
-                                            </span>
-                                        </div>
-                                        <span></span>
-                                        <div class="minicart">
-                                            <ul class="minicart-product-list">
-                                                <li>
-                                                    <a href="single-product.html" class="minicart-product-image">
-                                                        <img src="images/product/small-size/5.jpg" alt="cart products">
-                                                    </a>
-                                                    <div class="minicart-product-details">
-                                                        <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                        <span>£40 x 1</span>
-                                                    </div>
-                                                    <button class="close" title="Remove">
-                                                        <i class="fa fa-close"></i>
-                                                    </button>
-                                                </li>
-                                                <li>
-                                                    <a href="single-product.html" class="minicart-product-image">
-                                                        <img src="images/product/small-size/6.jpg" alt="cart products">
-                                                    </a>
-                                                    <div class="minicart-product-details">
-                                                        <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                        <span>£40 x 1</span>
-                                                    </div>
-                                                    <button class="close" title="Remove">
-                                                        <i class="fa fa-close"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                            <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
-                                            <div class="minicart-button">
-                                                <a href="shopping-cart.html" class="li-button li-button-fullwidth li-button-dark">
-                                                    <span>View Full Cart</span>
-                                                </a>
-                                                <a href="checkout.html" class="li-button li-button-fullwidth">
-                                                    <span>Checkout</span>
-                                                </a>
+                            <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
+                                <!-- Begin Header Middle Searchbox Area -->
+                                <form action="arama" method="post" class="hm-searchbox">
+                                    <select class="nice-select select-search-category">
+                                        <?php  
+                  $kategori=$baglanti->prepare("SELECT * FROM  kategori  order by kategori_sira ASC");
+                  $kategori->execute();
+                  while ($kategoricek=$kategori->fetch(PDO::FETCH_ASSOC)) { ?>
+                                        <option value="<?php echo $kategoricek['kategori_id'] ?>" ><?php echo $kategoricek['kategori_adi'] ?></option>                          
+                                   <?php  } ?>
+                                    </select>
+                                    <input type="text" name="aranacakkelime" placeholder="Aradığınız kelimeyi girin.">
+                                    <button  name=" kelimearama" class="li-btn" type="submit"><i class="fa fa-search"></i></button>
+                                </form>
+                                <!-- Header Middle Searchbox Area End Here -->
+                                <!-- Begin Header Middle Right Area -->
+                                <div class="header-middle-right">
+                                    <ul class="hm-menu">
+                                        <!-- Begin Header Middle Wishlist Area -->
+
+                                        <li class="hm-wishlist">
+                                            <a href="kullanici">
+                                               
+                                                <i class="fa fa-user-o"></i>
+
+                                            </a>
+                                            Hesabım
+                                        </li>
+
+                                        <!-- Header Middle Wishlist Area End Here -->
+                                        <!-- Begin Header Mini Cart Area -->
+                                        <li class="hm-minicart">
+                                            <div class="hm-minicart-trigger">
+                                                <span class="item-icon"></span>
+                                                <span class="item-text">Sepetim
+                                                    <span class="cart-item-count"></span>
+                                                </span>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <!-- Header Mini Cart Area End Here -->
-                                </ul>
+                                            <span></span>
+                                            <div class="minicart">
+                                                <ul class="minicart-product-list">
+                                                <?php 
+
+                        foreach ($_COOKIE['sepet'] as $key => $value) {
+
+
+                            $urunler=$baglanti->prepare("SELECT * FROM  urunler where urun_id=:urun_id  order by urun_sira ASC");
+                            $urunler->execute(array(
+                              'urun_id'=>$key
+
+
+                          ));
+                            $urunlercek=$urunler->fetch(PDO::FETCH_ASSOC);
+$sepettoplam+=$value * $urunlercek['urun_fiyat'] ;
+
+                            ?>     
+
+
+
+                                                    <li>
+                                                        <a href="single-product.html" class="minicart-product-image">
+                                                            <img src="Admin/resimler/urunler/<?php echo $urunlercek['urun_resim'] ?>" alt="cart products">
+                                                        </a>
+                                                        <div class="minicart-product-details">
+                                                            <h6><a href="single-product.html"><?php echo $urunlercek['urun_baslik'] ?></a></h6>
+                                                            <span><?php echo $urunlercek['urun_fiyat'] ?>₺</span>
+                                                        </div>
+                                                      <a href="islem?sepetsil&id=<?php echo  $key ?>"><button class="close" title="Remove">
+                                                            <i class="fa fa-close"></i>
+                                                        </button></a>
+                                                    </li>
+                                               <?php } ?>
+                                                </ul>
+                                                <p class="minicart-total">Toplam fİyat: <span><?php      
+                                              echo $sepettoplam;
+                                                 ?></span></p>
+                                                <div class="minicart-button">
+                                                    <a href="sepet" class="li-button li-button-fullwidth li-button-dark">
+                                                        <span>Sepeti görüntüle</span>
+                                                    </a>
+                                                    <a href="alisveris" class="li-button li-button-fullwidth">
+                                                        <span>Alışverişi tamamla</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- Header Mini Cart Area End Here -->
+                                    </ul>
+                                </div>
+                                <!-- Header Middle Right Area End Here -->
                             </div>
                             <!-- Header Middle Right Area End Here -->
                         </div>
-                        <!-- Header Middle Right Area End Here -->
                     </div>
                 </div>
-            </div>
-            <!-- Header Middle Area End Here -->
-            <!-- Begin Header Bottom Area -->
-            <div class="header-bottom header-sticky d-none d-lg-block d-xl-block">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <!-- Begin Header Bottom Menu Area -->
-                            <div class="hb-menu">
-                                <nav>
-                                    <ul>
-                                        <li><a href="index.php">Home</a></li>
-                                        <li><a href="shop.php">Shop</a></li>
-                                        <li><a href="about.php">About Us</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                    </ul>
-                                </nav>
+                <!-- Header Middle Area End Here -->
+                <!-- Begin Header Bottom Area -->
+                <div class="header-bottom header-sticky d-none d-lg-block d-xl-block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <!-- Begin Header Bottom Menu Area -->
+                                <div class="hb-menu">
+                                    <nav>
+                                        <ul>
+                                         <li><a href="index">Anasayfa</a></li>
+                                            <li class="megamenu-holder"><a href="">Kategorİler</a>
+                                                <ul class="megamenu hb-megamenu">
+                                                    <li>
+                                                        <ul>
+                                                             <?php  
+                  $kategori=$baglanti->prepare("SELECT * FROM  kategori  where kategori_durum=:kategori_durum and  kategori_sira  between 1 and 10 limit 8 ");
+                  $kategori->execute(array(
+
+                   'kategori_durum'=>1
+
+                  ));
+                  while ($kategoricek=$kategori->fetch(PDO::FETCH_ASSOC)) { ?>
+                                                            <li><a href="urunler-<?=seolink($kategoricek['kategori_adi']).'-'.$kategoricek['kategori_id'] ?>"><?php echo  $kategoricek['kategori_adi'] ?></a></li>
+                                                        <?php } ?>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <ul>
+                                                               <?php  
+                  $kategori=$baglanti->prepare("SELECT * FROM  kategori   where  kategori_durum=:kategori_durum and kategori_sira  between 10 and 20 limit 8 ");
+                  $kategori->execute(
+array(
+
+                   'kategori_durum'=>1
+
+                  )
+
+
+                  );
+                  while ($kategoricek=$kategori->fetch(PDO::FETCH_ASSOC)) { ?>
+                                                            <li><a href="urunler-<?=seolink($kategoricek['kategori_adi']).'-'.$kategoricek['kategori_id'] ?>"><?php echo  $kategoricek['kategori_adi'] ?></a></li>
+                                                        <?php } ?>
+
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <ul>
+                                                               <?php  
+                  $kategori=$baglanti->prepare("SELECT * FROM  kategori  where  kategori_durum=:kategori_durum and  kategori_sira  between 20 and 30 limit 8 ");
+                  $kategori->execute(array(
+
+                   'kategori_durum'=>1
+
+                  )
+);
+                  while ($kategoricek=$kategori->fetch(PDO::FETCH_ASSOC)) { ?>
+                                                            <li><a href="urunler-<?=seolink($kategoricek['kategori_adi']).'-'.$kategoricek['kategori_id'] ?>"><?php echo  $kategoricek['kategori_adi'] ?></a></li>
+                                                        <?php } ?>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            
+                                            
+                                            <li><a href="hakkimizda">Hakkımızda</a></li>
+                                            <li><a href="bilgi">Kargo BİLGİLERİ</a></li>
+                                            <li><a href="iletisim">İLETİŞİM</a></li>
+                                       
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- Header Bottom Menu Area End Here -->
                             </div>
-                            <!-- Header Bottom Menu Area End Here -->
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Header Bottom Area End Here -->
-            <!-- Begin Mobile Menu Area -->
-            <div class="mobile-menu-area d-lg-none d-xl-none col-12">
-                <div class="container">
-                    <div class="row">
-                        <div class="mobile-menu">
+                <!-- Header Bottom Area End Here -->
+                <!-- Begin Mobile Menu Area -->
+                <div class="mobile-menu-area d-lg-none d-xl-none col-12">
+                    <div class="container"> 
+                        <div class="row">
+                            <div class="mobile-menu">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Mobile Menu Area End Here -->
-        </header>
-        <!-- Header Area End Here -->
-
-
-
-        <?php
-
-
-        try {
-            $cnn = mysqli_connect('localhost', 'root', '', 'e-commerce');
-        } catch (\Throwable $e) {
-            echo $e->getMessage();
-        }
-        $sql = "SELECT * FROM settings where id=1";
-        $result = $cnn->query($sql);
-
-        $row = mysqli_fetch_array($result);
-
-        ?>
+                <!-- Mobile Menu Area End Here -->
+            </header>
