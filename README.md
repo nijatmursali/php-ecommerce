@@ -1,6 +1,6 @@
 # php-ecommerce
 
-E-commerce project that is/will be made with PHP.
+Finished E-commerce with PHP.
 
 ## Information
 
